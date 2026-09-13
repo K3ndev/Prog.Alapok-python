@@ -39,7 +39,7 @@ print("------- 4. feladat --------")
 print("tej", "tej", "tej", "tej", "tej", sep=" ,")
 print("tej", "tej", "tej", "tej", "tej", sep=" | ")
 print("tej", "tej", "tej", "tej", "tej", sep=" *** ")
-
+print()
 print("------- 5. feladat --------")
 
 print("""
@@ -49,4 +49,8 @@ Az informatikában, elsősorban a
 \tszövegszerkeztésben és
 \tprogramozásban
 használatos kifejezés
+
+Alapvetően azokat a karaktereket értjük alatta, amelyek nem láthatóak a szövegben,
+viszont valamilyen egyedi funkcióval bírnak. Nincs elterjedt magyar kifejezés rá.\"
+\t-- A Wikipédiából, (a szabad enciklopédiából)
 """)
