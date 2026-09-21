@@ -42,6 +42,11 @@ def user_statistics(loans: list):
         )
 
     return temp
+#print(user_statistics(loans))
 
-
-print(user_statistics(loans))
+def most_active_user(loans: list):
+    most_books = 0
+    most_books_name = []
+    for i in loans:
+        
+print(most_active_user(user_statistics(loans)))
