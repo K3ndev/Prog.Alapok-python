@@ -1,4 +1,6 @@
+import random
 from math import sqrt
+
 
 def safeInput(text, t=int, sign=0):
     try:
@@ -15,228 +17,259 @@ def safeInput(text, t=int, sign=0):
         return safeInput(text, t, sign)
 
 
-print("------ 1. ------")
-egyikSzam = safeInput("Kérlek add meg az első számot: ")
-masikSzam = safeInput("Kérlek add meg a második számot: ")
-
-b = egyikSzam > 0 and masikSzam > 0
-print(f"Mindkét szám pozitív: {b}")
-
-igazE = egyikSzam < 4 and masikSzam != 6
-print(f"Az egyik < 4 és a másik != 6: {igazE}")
-
-vanNulla = egyikSzam == 0 or masikSzam == 0
-print(f"Bármelyik szám egyenlő nullával: {vanNulla}")
-
-felt1 = egyikSzam == 5 or masikSzam != 4
-print(f"Az első 5-ös vagy a másik nem 4-es: {felt1}")
-
-felt2 = egyikSzam <= 5 or masikSzam >= 13
-print(f"Az első nemnagyobb 5-nél vagy a másik nemkisebb 13-nál: {felt2}")
-
-felt3 = (egyikSzam > 0 and masikSzam < 0) or (egyikSzam < 0 and masikSzam > 0)
-print(f"Az egyik szám pozitív, a másik negatív: {felt3}")
-
-
-print("------ 2. ------")
-print("A\tB\tA AND B\tA OR B\tA XOR B")
-print("-" * 35)
-for A in [False, True]:
-    for B in [False, True]:
-        and_res = A and B
-        or_res = A or B
-        xor_res = A != B
-        print(f"{A}\t{B}\t{and_res}\t{or_res}\t{xor_res}")
-
-
-print("------ 3. ------")
-num = safeInput("Kérlek adj meg egy egész számot: ")
-rem = num % 10
-print(f"A szám 10-zel vett osztási maradéka: {rem}")
-if num % 10 == 0:
-    print("A szám osztható 10-zel.")
-
-
-print("------ 4. ------")
-szamlalo = safeInput("Kérlek add meg a számlálót: ")
-nevezo = safeInput("Kérlek add meg a nevezőt: ")
-if nevezo == 0:
-    print("Hiba: A tört nevezője nem lehet nulla!")
+print("------ 21. ------")
+pont = safeInput("Adja meg a dolgozat pontszámát (0-100): ", int, 1)
+if 0 <= pont <= 42:
+    print("Értékelés: elégtelen (1)")
+elif 43 <= pont <= 57:
+    print("Értékelés: elégséges (2)")
+elif 58 <= pont <= 72:
+    print("Értékelés: közepes (3)")
+elif 73 <= pont <= 87:
+    print("Értékelés: jó (4)")
+elif 88 <= pont <= 100:
+    print("Értékelés: jeles (5)")
 else:
-    print(f"A tört értéke: {szamlalo / nevezo}")
+    print("Hibás pontszám! (0-100 között kell lennie)")
 
 
-print("------ 5. ------")
-num = safeInput("Kérlek adj meg egy háromjegyű pozitív egész számot: ", int, 1)
-if 100 <= num <= 999:
-    s = str(num)
-    szamjegyek_kobe = int(s[0])**3 + int(s[1])**3 + int(s[2])**3
-    if szamjegyek_kobe == num:
-        print(f"A {num} egy Armstrong-szám.")
+print("------ 22. ------")
+kor = safeInput("Adja meg az életkorát: ", int, 1)
+if 0 <= kor <= 13:
+    print("Kategória: Gyerek")
+elif 14 <= kor <= 17:
+    print("Kategória: Fiatalkorú")
+elif 18 <= kor <= 23:
+    print("Kategória: Ifjú")
+elif 24 <= kor <= 59:
+    print("Kategória: Felnőtt")
+else:
+    print("Kategória: Idős")
+
+
+print("------ 23. ------")
+targy_suruseg = safeInput("Adja meg a tárgy sűrűségét: ", float, 1)
+folyadek_suruseg = safeInput("Adja meg a folyadék sűrűségét: ", float, 1)
+
+if targy_suruseg > folyadek_suruseg:
+    print("A tárgy elmerül.")
+elif folyadek_suruseg > targy_suruseg:
+    print("A tárgy úszik.")
+else:
+    print("A tárgy lebeg.")
+
+
+print("------ 24. ------")
+hianyzas = safeInput(
+    "Adja meg az igazolatlan hiányzások számát: ", int, 1
+)
+if hianyzas == 0:
+    print("Magatartás jegy: 5 (példás)")
+elif 1 <= hianyzas <= 3:
+    print("Magatartás jegy: 4 (jó)")
+elif 4 <= hianyzas <= 9:
+    print("Magatartás jegy: 3 (változó)")
+else:
+    print("Magatartás jegy: 2 (rossz)")
+    szul_ev = safeInput("Adja meg a tanuló születési évét: ", int, 1)
+    # Feltételezve a naptári évet (2026)
+    if 2026 - szul_ev < 18:
+        print("Szülői értesítés szükséges")
     else:
-        print(f"A {num} nem Armstrong-szám.")
+        print("Felszólítás kiküldése szükséges")
+
+print("------ 26. ------")
+v = safeInput("Adja meg az autó sebességét (km/h): ", float, 1)
+if 0 <= v <= 1:
+    print("Hasonló állat: Csiga (0-1 km/h)")
+elif 1 < v <= 6:
+    print("Hasonló állat: Csuka (1-6 km/h)")
+elif 6 < v <= 32:
+    print("Hasonló állat: Bálna (7-32 km/h)")
+elif 32 < v <= 48:
+    print("Hasonló állat: Ezüst sirály (32-48 km/h)")
+elif 48 < v <= 64:
+    print("Hasonló állat: Nyúl (48-64 km/h)")
+elif 64 < v <= 70:
+    print("Hasonló állat: Strucc (65-70 km/h)")
+elif 70 < v <= 110:
+    print("Hasonló állat: Gepárd (71-110 km/h)")
+elif 110 < v <= 320:
+    print("Hasonló állat: Vadászsólyom zuhanórepülésben (111-320 km/h)")
 else:
-    print("A megadott szám nem háromjegyű!")
+    print("Ennyivel még a vadászsólyom sem repül!")
 
 
-print("------ 6. ------")
-num = safeInput("Kérlek adj meg egy egész számot: ")
-if num == 4:
-    print("A megadott szám a 4-es.")
-if num < 10:
-    print("A megadott szám kisebb mint 10.")
-if num % 2 == 0:
-    print("A megadott szám páros.")
-if 0 <= num <= 10:
-    print("A megadott szám a [0,10] intervallumba esik.")
-if num % 3 == 0 and num % 5 == 0:
-    print("A megadott szám osztható 3-mal és 5-tel is.")
-if not (10 <= num <= 20):
-    print("A megadott szám nem a [10,20] intervallumba esik.")
-
-
-print("------ 7. ------")
-num1 = safeInput("Kérlek add meg az első számot: ")
-num2 = safeInput("Kérlek add meg a második számot: ")
-
-if num1 == num2:
-    print("A két szám egyenlő.")
-if num1 % 2 != 0 and num2 % 2 != 0:
-    print("Mind a két szám páratlan.")
-if num1 % 3 == 0 or num2 % 3 == 0:
-    print("Legalább az egyik szám osztható hárommal.")
-if num1 < 0 and num2 < 0:
-    print("Mind a két szám negatív.")
-if (num1 < 0 and num2 > 0) or (num1 > 0 and num2 < 0):
-    print("Az egyik szám negatív, a másik szám pozitív.")
-
-
-print("------ 8. ------")
-a = safeInput("Adj meg a téglalap 'a' oldalát: ", float, 1)
-b = safeInput("Adj meg a téglalap 'b' oldalát: ", float, 1)
-if a == b:
-    print("A megadott alakzat egy négyzet.")
+print("------ 27. ------")
+d = safeInput("Adja meg a távolságot (km): ", float, 1)
+if 1 <= d <= 2:
+    print("Díjazás: 500 Ft")
+elif 3 <= d <= 5:
+    print("Díjazás: 700 Ft")
+elif 6 <= d <= 10:
+    print("Díjazás: 900 Ft")
+elif 11 <= d <= 20:
+    print("Díjazás: 1 400 Ft")
+elif 21 <= d <= 30:
+    print("Díjazás: 2 000 Ft")
 else:
-    print("A megadott alakzat egy téglalap.")
+    print("Erre a távolságra nincs egyedi díjszabás meghatározva.")
 
 
-print("------ 9. ------")
-a = safeInput("Adj meg az első oldalt: ", float, 1)
-b = safeInput("Adj meg a második oldalt: ", float, 1)
-c = safeInput("Adj meg a harmadik oldalt: ", float, 1)
-if a == b == c:
-    print("Ez egy szabályos háromszög.")
+print("------ 28. ------")
+szelesseg = safeInput("Adja meg a telek szélességét (m): ", float, 1)
+hosszusag = safeInput("Adja meg a telek hosszúságát (m): ", float, 1)
+alap_ado = safeInput("Adja meg az alap telekadót (Ft): ", float, 1)
+
+if szelesseg <= 15 or hosszusag <= 25:
+    korrigalt_ado = alap_ado * 0.8
+    print(f"20% adókedvezmény jár! A fizetendő adó: {korrigalt_ado} Ft")
 else:
-    print("Ez nem szabályos háromszög.")
+    print(f"Nem jár kedvezmény. A fizetendő adó: {alap_ado} Ft")
 
 
-print("------ 10. ------")
-num = safeInput("Kérlek adj meg egy egész számot: ")
-if num == 10 or num == 100 or num == 1000:
-    print(f"A szám egyenlő {num}-zel/zal.")
-else:
-    print("A szám nem egyenlő sem 10-zel, sem 100-zal, sem 1000-rel.")
+print("------ 29. ------")
+T = safeInput("Adjon meg egy évszámot (1800-2099): ", int, 1)
+if 1800 <= T <= 2099:
+    A = T % 19
+    B = T % 4
+    C = T % 7
+    D = (19 * A + 24) % 30
+    E = (2 * B + 4 * C + 6 * D + 5) % 7
 
+    H = 22 + D + E
 
-print("------ 11. ------")
-num = safeInput("Kérlek adj meg egy számot: ", float)
-if 1 <= num <= 9:
-    print("A szám benne van az [1,9] intervallumban.")
-else:
-    print("A szám nincs benne az [1,9] intervallumban.")
+    if E == 6 and D == 29:
+        H = 50
+    elif E == 6 and D == 28 and A > 10:
+        H = 49
 
-
-print("------ 12. ------")
-num = safeInput("Kérlek adj meg egy egész számot: ")
-if num < 0 and num % 2 != 0:
-    print("A szám negatív páratlan szám.")
-else:
-    print("A szám nem negatív páratlan szám.")
-
-
-print("------ 13. ------")
-a = safeInput("Adj meg az első számot (osztó): ")
-b = safeInput("Adj meg a második számot: ")
-if a != 0 and b % a == 0:
-    print(f"A(z) {a} osztója a(z) {b} számnak.")
-else:
-    print(f"A(z) {a} nem osztója a(z) {b} számnak.")
-
-
-print("------ 14. ------")
-num = safeInput("Kérlek adj meg egy számot: ", float)
-if num >= 0:
-    print(f"A szám gyöke: {sqrt(num)}")
-else:
-    print("Hiba: Negatív számból nem vonható négyzetgyök!")
-
-
-print("------ 15. ------")
-a = safeInput("Adj meg az 'a' oldalt: ", float, 1)
-b = safeInput("Adj meg a 'b' oldalt: ", float, 1)
-c = safeInput("Adj meg a 'c' oldalt: ", float, 1)
-
-if (a + b > c) and (a + c > b) and (b + c > a):
-    print(f"A megadott adatokból képezhető háromszög. Kerülete: {a + b + c}")
-else:
-    print("Hibás adatok! A megadott szakaszokból nem építhető háromszög.")
-
-
-print("------ 16. ------")
-s = safeInput("Adja meg a megtett távolságot (km): ", float, 1)
-t = safeInput("Adja meg az eltelt időt (óra): ", float, 1)
-if t > 0:
-    v = s / t
-    if v > 145 or v < 80:
-        print("Nem megfelelő sebességgel közlekedett!")
+    if H <= 31:
+        print(f"Húsvét vasárnap dátuma: március {H}.")
     else:
-        print("Minden rendben!")
+        print(f"Húsvét vasárnap dátuma: április {H - 31}.")
 else:
-    print("Az időnek nagyobbnak kell lennie 0-nál!")
+    print("A megadott évszám kívül esik a [1800, 2099] intervallumon.")
 
 
-print("------ 17. ------")
-num = safeInput("Kérlek adj meg egy egész számot: ")
-if num > 0:
-    print("A szám előjele: pozitív (+)")
-elif num < 0:
-    print("A szám előjele: negatív (-)")
+print("------ 30. ------")
+jegy = safeInput("Adja meg az érdemjegyet (1-5): ", int, 1)
+if jegy == 1:
+    print("Elégtelen")
+elif jegy == 2:
+    print("Elégséges")
+elif jegy == 3:
+    print("Közepes")
+elif jegy == 4:
+    print("Jó")
+elif jegy == 5:
+    print("Jeles")
 else:
-    print("A szám értéke nullával egyenlő.")
+    print("Nincs ilyen érdemjegy!")
 
 
-print("------ 18. ------")
-a = safeInput("Adja meg az első számot: ", float)
-b = safeInput("Adja meg a második számot: ", float)
-if a > b:
-    print(f"{a} nagyobb mint {b}")
-elif a < b:
-    print(f"{a} kisebb mint {b}")
+print("------ 31. ------")
+nap_szam = safeInput("Adja meg a hét napjának sorszámát (1-7): ", int, 1)
+napok = [
+    "Hétfő",
+    "Kedd",
+    "Szerda",
+    "Csütörtök",
+    "Péntek",
+    "Szombat",
+    "Vasárnap",
+]
+if 1 <= nap_szam <= 7:
+    print(f"A nap neve: {napok[nap_szam - 1]}")
 else:
-    print(f"{a} egyenlő {b}-vel")
+    print("Nincs ilyen nap a héten!")
 
 
-print("------ 19. ------")
-temp = safeInput("Adja meg a víz hőmérsékletét (°C): ", float)
-if temp <= 0:
-    print("Halmazállapot: szilárd (jég)")
-elif temp < 100:
-    print("Halmazállapot: folyékony (víz)")
+print("------ 32. ------")
+ev = safeInput("Adja meg az évet: ", int, 1)
+honap = safeInput("Adja meg a hónap sorszámát (1-12): ", int, 1)
+nap = safeInput("Adja meg a napot: ", int, 1)
+
+honapok = [
+    "január",
+    "február",
+    "március",
+    "április",
+    "május",
+    "június",
+    "július",
+    "augusztus",
+    "szeptember",
+    "október",
+    "november",
+    "december",
+]
+if 1 <= honap <= 12:
+    print(f"Dátum: {ev}. {honapok[honap - 1]} {nap}.")
 else:
-    print("Halmazállapot: légnemű (gőz)")
+    print("Érvénytelen hónap!")
 
 
-print("------ 20. ------")
-x = safeInput("Adja meg az X koordinátát: ", float)
-y = safeInput("Adja meg az Y koordinátát: ", float)
+print("------ 33. ------")
+kocka = random.randint(1, 6)
+print(f"A dobás értéke: {kocka}")
+if kocka in [1, 2]:
+    print("Gyenge!")
+elif kocka in [3, 4]:
+    print("Nem rossz!")
+elif kocka == 5:
+    print("Jó!")
+elif kocka == 6:
+    print("Kiváló!")
 
-if x > 0 and y > 0:
-    print("Első síknegyed (+, +)")
-elif x < 0 and y > 0:
-    print("Második síknegyed (-, +)")
-elif x < 0 and y < 0:
-    print("Harmadik síknegyed (-, -)")
-elif x > 0 and y < 0:
-    print("Negyedik síknegyed (+, -)")
-else:
-    print("A pont valamelyik koordináta-tengelyen vagy az origóban fekszik.")
+
+print("------ 34. ------")
+print(f"a) 0..100: {random.randint(0, 100)}")
+print(f"b) -100..0: {random.randint(-100, 0)}")
+print(f"c) 10..90: {random.randint(10, 90)}")
+print(f"d) -100..100: {random.randint(-100, 100)}")
+print(f"e) -50..50: {random.randint(-50, 50)}")
+print(f"f) 1000..2000: {random.randint(1000, 2000)}")
+print(f"g) 8000..150000: {random.randint(8000, 150000)}")
+
+
+print("------ 35. ------")
+lab = safeInput("Adja meg a hosszúságot lábban: ", float, 1)
+huvelyk = safeInput("Adja meg a hosszúságot hüvelykben: ", float, 1)
+cm = lab * 30.48 + huvelyk * 2.54
+print(f"A megadott hosszúság centiméterben: {cm:.2f} cm")
+
+
+print("------ 36. ------")
+gallon = safeInput("Adja meg a víz mennyiségét gallonban: ", float, 1)
+liter = gallon * 4.543
+tomeg_kg = liter * 0.998
+tomeg_dkg = tomeg_kg * 100
+font = tomeg_dkg / 45.36
+print(f"{gallon} gallon víz tömege kb. {font:.2f} font.")
+
+
+print("------ 37. ------")
+d_nap = safeInput("Adja meg a hónap hányadik napja van (1-31): ", int, 1)
+d_ora = safeInput("Adja meg a jelenlegi órát (0-23): ", int)
+ora_osszesen = (d_nap - 1) * 24 + d_ora
+print(f"A hónap {ora_osszesen}. órájában vagyunk.")
+
+
+print("------ 38. ------")
+valasztas = safeInput(
+    "Mit szeretne váltani? (1: fok -> radián, 2: radián -> fok): "
+)
+if valasztas == 1:
+    fok = safeInput("Adja meg a szöget fokban: ", float)
+    rad = fok * (3.141592653589793 / 180)
+    print(f"{fok}° = {rad:.4f} rad")
+elif valasztas == 2:
+    rad = safeInput("Adja meg a szöget radiánban: ", float)
+    fok = rad * (180 / 3.141592653589793)
+    print(f"{rad} rad = {fok:.2f}°")
+
+
+print("------ 39. ------")
+f_num = safeInput("Adjon meg egy valós számot: ", float)
+print(f"A szám abszolút értéke: {abs(f_num)}")
