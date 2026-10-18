@@ -1,5 +1,4 @@
 import random
-from math import sqrt
 
 
 def safeInput(text, t=int, sign=0):
@@ -17,340 +16,280 @@ def safeInput(text, t=int, sign=0):
         return safeInput(text, t, sign)
 
 
-print("------ 1. ------")
-n1 = safeInput("Kérlek adj meg egy számot 1 és 10 között: ", int, 1)
-if 1 <= n1 <= 10:
-    for i in range(1, n1 + 1):
-        print(f"{i}. Sok beszédnek sok az alja.")
-else:
-    print("A számnak 1 és 10 között kell lennie!")
+def feladat1():
+    print("------ 1. Feladat ------")
+    kezdotoke = safeInput("Adja meg a kezdőtőkét (Ft): ", float, 1)
+    kamat = safeInput("Adja meg az éves kamatlábat (%): ", float, 1)
+    cel = 300000
+    ev = 0
+
+    while kezdotoke < cel:
+        kezdotoke *= 1 + (kamat / 100)
+        ev += 1
+
+    print(f"A tőke {ev} év után éri el a {cel} Ft-ot.")
+    print(f"Végösszeg: {kezdotoke:.0f} Ft")
 
 
-print("------ 2. ------")
-n2 = safeInput("Kérlek adj meg egy számot 1 és 10 között: ", int, 1)
-if 1 <= n2 <= 10:
-    for i in range(1, n2 + 1):
-        print(f"Megmondtam már {i}-szer, hogy semmit sem mondok el kétszer!")
-else:
-    print("A számnak 1 és 10 között kell lennie!")
+def feladat2():
+    print("------ 2. Feladat ------")
+    magassag = safeInput("Adja meg a labda kezdeti magasságát (m): ", float, 1)
+    pattanas = 0
+
+    while magassag > 0.2:
+        magassag *= 0.5
+        pattanas += 1
+
+    print(f"A labda {pattanas} pattanás után lesz kisebb, mint 0,2 m.")
 
 
-print("------ 3. ------")
-print("0-tól 50-ig:")
-for i in range(51):
-    print(i, end=" ")
-print()
+def feladat3():
+    print("------ 3. Feladat ------")
+    szam = safeInput("Adja meg a számot: ", int, 1)
+    lepes = 0
 
-print("182-től 212-ig:")
-for i in range(182, 213):
-    print(i, end=" ")
-print()
-
-print("Páros számok 100-tól 200-ig:")
-for i in range(100, 201, 2):
-    print(i, end=" ")
-print()
-
-print("Páratlan számok 89-től 57-ig visszafelé:")
-for i in range(89, 56, -2):
-    print(i, end=" ")
-print()
-
-print("1-től 20-ig a számok és négyzetük:")
-for i in range(1, 21):
-    print(f"{i} -> {i**2}")
-
-print("99-től csökkenő sorrendben 3-mal osztható pozitívak:")
-for i in range(99, 0, -3):
-    print(i, end=" ")
-print()
-
-print("101-től 50-ig csökkenőben az öttel oszthatóak kétszerese:")
-for i in range(100, 49, -1):
-    if i % 5 == 0:
-        print(i * 2, end=" ")
-print()
-
-print("1-től 1000-ig vesszővel, végén ponttal:")
-out_str = ""
-for i in range(1, 1001):
-    if i == 1000:
-        out_str += f"{i}."
-    else:
-        out_str += f"{i}, "
-print(out_str)
-
-print("1000-től 1-ig 3-asával visszafelé:")
-for i in range(1000, 0, -3):
-    print(i, end=" ")
-print()
-
-
-print("------ 4. ------")
-print("100 db csillag:")
-print("*" * 100)
-
-db = safeInput("Add meg a darabszámot: ", int, 1)
-char = input("Add meg a karaktert: ")
-print(char * db)
-
-szoveg = input("Adj meg egy szöveget keretezéshez: ")
-keret = "*" * (len(szoveg) + 4)
-print(keret)
-print(f"* {szoveg} *")
-print(keret)
-
-print("8x8-as sakktábla:")
-for sor in range(8):
-    sor_str = ""
-    for oszlop in range(8):
-        if (sor + oszlop) % 2 == 0:
-            sor_str += "*"
+    while szam != 1:
+        print(szam, end=" ")
+        if szam % 2 == 0:
+            szam //= 2
         else:
-            sor_str += " "
-    print(sor_str)
+            szam = szam * 3 + 1
+        lepes += 1
+
+    print(1)
+    print(f"A sorozat {lepes} lépésből állt.")
 
 
-print("------ 5. ------")
-start = safeInput("Add meg az első számot: ")
-stop = safeInput("Add meg a második számot: ")
-lepes = safeInput("Add meg a lépésközt (pozitív): ", int, 1)
-if start <= stop:
-    for i in range(start, stop + 1, lepes):
-        print(i, end=" ")
-else:
-    for i in range(start, stop - 1, -lepes):
-        print(i, end=" ")
-print()
+def feladat4():
+    print("------ 4. Feladat ------")
+    hatar = safeInput("Adja meg a felső határt: ", int, 1)
+    ertek = 1
+
+    while ertek * 2 <= hatar:
+        ertek *= 2
+
+    print(f"A legnagyobb kettő hatvány: {ertek}")
 
 
-print("------ 6. ------")
-n_bev = safeInput("Add meg n értékét: ", int, 1)
-negyz_s = ""
-for i in range(1, n_bev + 1):
-    if i == n_bev:
-        negyz_s += f"{i**2}"
-    else:
-        negyz_s += f"{i**2};"
-print(negyz_s)
+def feladat5():
+    print("------ 5. Feladat ------")
+    osszeg = 0
+    db = 0
+
+    while osszeg < 500:
+        szam = safeInput("Adja meg a számot: ", int)
+        osszeg += szam
+        db += 1
+
+    print(f"A végösszeg: {osszeg} Ft")
+    print(f"{db} darab szám összegzése után értük el a 500-at.")
 
 
-print("------ 7. ------")
-n_kob = safeInput("Add meg n értékét: ", int, 1)
-for i in range(1, n_kob + 1):
-    print(f"{i} köbe = {i**3}")
+def feladat6():
+    print("------ 6. Feladat ------")
+    jelszo = "titok123"
+    probalkozas = 0
 
+    while True:
+        bekert = input("Adja meg a jelszót: ")
+        probalkozas += 1
 
-print("------ 8. ------")
-a_bev = safeInput("Add meg 'a' értékét: ")
-b_bev = safeInput("Add meg 'b' értékét: ")
-min_v = min(a_bev, b_bev)
-max_v = max(a_bev, b_bev)
-for i in range(min_v, max_v + 1):
-    if i >= 0:
-        print(f"sqrt({i}) = {sqrt(i):.2f}")
-    else:
-        print(f"sqrt({i}) = nem értelmezett")
-
-
-print("------ 9. ------")
-fakt_n = safeInput("Add meg n-t a faktoriálishoz: ", int, 1)
-fakt = 1
-for i in range(1, fakt_n + 1):
-    fakt *= i
-print(f"{fakt_n}! = {fakt}")
-
-
-print("------ 10. ------")
-n_negyzet = safeInput("Add meg n értékét az első n négyzetszámhoz: ", int, 1)
-for i in range(1, n_negyzet + 1):
-    print(f"{i}. négyzetszám: {i**2}")
-
-
-print("------ 11. ------")
-n_paratlan = safeInput("Add meg N-t a páratlan számok összegéhez: ", int, 1)
-paratlan_osszeg = sum(i for i in range(1, n_paratlan + 1, 2))
-print(f"Az N-nél nem nagyobb páratlan számok összege: {paratlan_osszeg}")
-
-
-print("------ 12. ------")
-k_szam = safeInput("Add meg K pozitív egész számot: ", int, 1)
-sorozat_osszeg = 0
-for i in range(1, k_szam + 1):
-    sorozat_osszeg += i * (i + 1)
-print(f"A sorozat összege 1*2-től {k_szam}*({k_szam}+1)-ig: {sorozat_osszeg}")
-
-
-print("------ 13. ------")
-n_tobb = safeInput("Add meg N természetes számot: ", int, 1)
-print(f"A 3 többszörösei {n_tobb}-ig:")
-for i in range(3, n_tobb + 1, 3):
-    print(i, end=" ")
-print()
-
-
-print("------ 14. ------")
-n_fib = safeInput("Add meg az első N Fibonacci számot: ", int, 1)
-if n_fib > 0:
-    a, b = 0, 1
-    fib_list = []
-    for _ in range(n_fib):
-        fib_list.append(a)
-        a, b = b, a + b
-    print("Fibonacci számok:", fib_list)
-
-
-print("------ 15. ------")
-n_prim = safeInput("Add meg az első N prímszámot: ", int, 1)
-primes = []
-current = 2
-while len(primes) < n_prim:
-    is_p = True
-    for p in primes:
-        if p * p > current:
+        if bekert == jelszo:
+            print("Sikeres belépés!")
+            print(f"{probalkozas} próbálkozásból sikerült.")
             break
-        if current % p == 0:
-            is_p = False
-            break
-    if is_p:
-        primes.append(current)
-    current += 1
-print("Prímszámok:", primes)
-
-
-print("------ 16. ------")
-print("Szorzótábla (1-3):")
-for i in range(1, 4):
-    row_str = f"{i} "
-    for j in range(1, 4):
-        row_str += f"{i*j:3}"
-    print(row_str)
-
-
-print("------ 17. ------")
-print("10 véletlen szám különböző intervallumokból:")
-print("[0,10]:", [random.randint(0, 10) for _ in range(10)])
-print("[0,25]:", [random.randint(0, 25) for _ in range(10)])
-print("[0,50]:", [random.randint(0, 50) for _ in range(10)])
-print("[10,75]:", [random.randint(10, 75) for _ in range(10)])
-print("[-50,50]:", [random.randint(-50, 50) for _ in range(10)])
-print("[-100,-70]:", [random.randint(-100, -70) for _ in range(10)])
-
-
-print("------ 18. ------")
-csillag_db = safeInput("Adj meg egy egész számot a csillagokhoz: ", int, 1)
-print("*" * csillag_db)
-print("Négyzet rajzolása:")
-for _ in range(csillag_db):
-    print("*" * csillag_db)
-
-
-print("------ 19. ------")
-m_sz = safeInput("Add meg M-et (szélesség): ", int, 1)
-n_mag = safeInput("Add meg N-et (magasság): ", int, 1)
-for _ in range(n_mag):
-    print("*" * m_sz)
-
-
-print("------ 20. ------")
-m_par = safeInput("Add meg M-et (szélesség): ", int, 1)
-n_par = safeInput("Add meg N-et (sorok száma): ", int, 1)
-for _ in range(n_par):
-    print("*" * m_par)
-
-
-print("------ 21. ------")
-n_harom = safeInput("Add meg a háromszög magasságát (N): ", int, 1)
-for i in range(1, n_harom + 1):
-    print("*" * (2 * i - 1))
-
-
-print("------ 22. ------")
-m_uk = safeInput("Add meg M-et (szélesség): ", int, 1)
-n_uk = safeInput("Add meg N-et (magasság): ", int, 1)
-for i in range(n_uk):
-    if i == 0 or i == n_uk - 1:
-        print("*" * m_uk)
-    else:
-        if m_uk > 2:
-            print("*" + " " * (m_uk - 2) + "*")
         else:
-            print("*" * m_uk)
+            print("Hibás jelszó, próbáld újra!")
 
 
-print("------ 23. ------")
-feladat_db = safeInput("Hány feladatot szeretnél megoldani? ", int, 1)
-helyes = 0
-for _ in range(feladat_db):
-    a_rnd = random.randint(1, 100)
-    b_rnd = random.randint(1, 100)
-    print(f"\nSzámok: {a_rnd} és {b_rnd}")
-    user_osszeg = safeInput("Mennyi a két szám összege? ")
-    user_kulonbseg = safeInput("Mennyi a két szám különbsége? ")
+def feladat7():
+    print("------ 7. Feladat ------")
+    while True:
+        szo = input("Adja meg a szót: ")
 
-    valos_osszeg = a_rnd + b_rnd
-    valos_kulonbseg = a_rnd - b_rnd
+        if szo == "stopp" or szo == ".":
+            print("Viszlát!")
+            break
+        else:
+            print(szo.upper())
 
-    if user_osszeg == valos_osszeg and user_kulonbseg == valos_kulonbseg:
-        print("Jó eredmény!")
-        helyes += 1
+
+def feladat8():
+    print("------ 8. Feladat ------")
+    while True:
+        kor = safeInput("Adja meg az életkorát: ", int)
+
+        if 0 <= kor <= 120:
+            print(f"Köszönöm, az életkorod: {kor}")
+            if kor > 99:
+                print("A korod túl magas ahhoz, hogy a kirakós játékban részt vegyél.")
+            break
+        else:
+            print("Hibás életkor, próbáld újra!")
+
+
+def feladat9():
+    print("------ 9. Feladat ------")
+    osszeg = safeInput("Adja meg az összeget (Ft): ", int, 1)
+    penz = [200, 100, 50, 20, 10, 5]
+    db = {}
+
+    for cimlet in penz:
+        db[cimlet] = osszeg // cimlet
+        osszeg %= cimlet
+
+    print("Címletbontás:")
+    for cimlet in penz:
+        if db[cimlet] > 0:
+            print(f"{cimlet} Ft: {db[cimlet]} db")
+
+
+def feladat10():
+    print("------ 10. Feladat ------")
+    ido = safeInput("Adja meg a visszaszámlálás kezdőértékét: ", int, 1)
+
+    while ido >= 0:
+        print(ido)
+        ido -= 1
+
+    print("Kilövés!")
+
+
+def feladat11():
+    print("------ 11. Feladat ------")
+    osszeg = 0
+    db = 0
+
+    while True:
+        ar = safeInput("Adja meg a termék árát (0 = kilépés): ", int)
+        if ar == 0:
+            break
+        osszeg += ar
+        db += 1
+
+    print(f"A termékek darabszáma: {db}")
+    print(f"A végösszeg: {osszeg} Ft")
+
+
+def feladat12():
+    print("------ 12. Feladat ------")
+    bakteriak = 100
+    ora = 0
+
+    while bakteriak < 50000:
+        bakteriak *= 2
+        ora += 1
+
+    print(f"{ora} óra múlva éri el vagy haladja meg az 50 000 baktériumot.")
+
+
+def feladat13():
+    print("------ 13. Feladat ------")
+    jelszo = "1234"
+
+    for i in range(3):
+        bekert = input("Adja meg a kódot: ")
+
+        if bekert == jelszo:
+            print("Belépés engedélyezve!")
+            break
+        else:
+            print("Hibás kód!")
+
     else:
-        print(
-            f"Rossz eredmény! A helyes összeg: {valos_osszeg}, a különbség: {valos_kulonbseg}"
-        )
-print(
-    f"\nEredmény: {helyes}/{feladat_db} helyes válasz ({helyes/feladat_db*100:.1f}%)"
-)
+        print("Letiltva!")
 
 
-print("------ 24. ------")
-print("Kód\tKarakter")
-for code in range(32, 256):
-    print(f"{code}\t{chr(code)}")
+def feladat14():
+    print("------ 14. Feladat ------")
+    dobasok = 0
+
+    while True:
+        dobasok += 1
+        dobas = random.randint(1, 6)
+        print(f"{dobasok}. dobás: {dobas}")
+
+        if dobas == 6:
+            print(f"A hatost a(z) {dobasok}. dobásnál dobtad.")
+            break
 
 
-print("------ 25. ------")
-poz_szam = safeInput("Adjon meg egy pozitív egész számot az osztókhoz: ", int, 1)
-print(f"A(z) {poz_szam} osztói:")
-for i in range(1, poz_szam + 1):
-    if poz_szam % i == 0:
-        print(i, end=" ")
-print()
+def feladat15():
+    print("------ 15. Feladat ------")
+    while True:
+        jegy = safeInput("Adja meg az érdemjegyet (1-5): ", int)
+
+        if 1 <= jegy <= 5:
+            print("Köszönöm, a jegyedet rögzítettem.")
+            break
+        else:
+            print("Hibás érdemjegy, próbáld újra!")
 
 
-print("------ 26. ------")
-poz_szam2 = safeInput(
-    "Adjon meg egy pozitív egész számot az osztók összegéhez: ", int, 1
-)
-osztok_osszege = sum(i for i in range(1, poz_szam2 + 1) if poz_szam2 % i == 0)
-print(f"Az osztók összege: {osztok_osszege}")
+def feladat16():
+    print("------ 16. Feladat ------")
+    osszeg = 0
+    nap = 0
+
+    while osszeg < 1000:
+        nap += 1
+        beletesz = safeInput(f"{nap}. nap: mennyi pénzt teszel a perselybe (Ft)? ", int, 1)
+        osszeg += beletesz
+
+    print(f"{nap} nap alatt gyűlt össze a pénz.")
+    print(f"A végösszeg: {osszeg} Ft")
 
 
-print("------ 27. ------")
-tok_szam = safeInput(
-    "Adjon meg egy pozitív egész számot a tökéletes szám vizsgálathoz: ", int, 1
-)
-div_sum = sum(i for i in range(1, tok_szam + 1) if tok_szam % i == 0)
-if div_sum == 2 * tok_szam:
-    print(f"A(z) {tok_szam} egy TÖKÉLETES szám.")
-else:
-    print(f"A(z) {tok_szam} nem tökéletes szám.")
+def feladat17():
+    print("------ 17. Feladat ------")
+    szam = safeInput("Adja meg a számot: ", int, 1)
+    oszto = 2
+
+    while szam % oszto != 0:
+        oszto += 1
+
+    print(f"A legkisebb 1-nél nagyobb osztó: {oszto}")
 
 
-print("------ 28. ------")
-alap = safeInput("Hatványalap: ", float)
-kitevo = safeInput("Kitevő: ", int)
-eredmeny = 1
-for _ in range(abs(kitevo)):
-    eredmeny *= alap
-if kitevo < 0:
-    eredmeny = 1 / eredmeny
-print(f"A Hatványérték: {eredmeny}")
+def feladat18():
+    print("------ 18. Feladat ------")
+    while True:
+        print("[1] Új játék")
+        print("[2] Segítség")
+        print("[3] Kilépés")
+        valasztas = safeInput("Válassz menüpontot: ", int)
+
+        if valasztas == 1:
+            print("Új játék indítása.")
+        elif valasztas == 2:
+            print("Segítség: válassz 1-et vagy 3-at.")
+        elif valasztas == 3:
+            print("Viszlát!")
+            break
+        else:
+            print("Érvénytelen menüpont!")
 
 
-print("------ 29. ------")
-print("Vigenère-tábla:")
-abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-for i in range(len(abc)):
-    sor = abc[i:] + abc[:i]
-    print(sor)
+def main():
+    feladat1()
+    feladat2()
+    feladat3()
+    feladat4()
+    feladat5()
+    feladat6()
+    feladat7()
+    feladat8()
+    feladat9()
+    feladat10()
+    feladat11()
+    feladat12()
+    feladat13()
+    feladat14()
+    feladat15()
+    feladat16()
+    feladat17()
+    feladat18()
+
+
+if __name__ == "__main__":
+    main()
